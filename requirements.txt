@@ -21,3 +21,5 @@ scikit-plot
 # Optional (for preprocessing or EDA)
 imbalanced-learn
 nbformat
+
+prophet

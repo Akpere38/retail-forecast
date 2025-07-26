@@ -1,0 +1,23 @@
+# Core libraries
+numpy
+pandas
+matplotlib
+seaborn
+
+# Machine Learning
+scikit-learn
+xgboost
+
+# Model saving
+joblib
+
+# Streamlit app
+streamlit
+
+# For visualization
+plotly
+scikit-plot
+
+# Optional (for preprocessing or EDA)
+imbalanced-learn
+nbformat

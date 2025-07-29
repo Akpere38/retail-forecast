@@ -141,18 +141,24 @@ def predict_sales(df, xgb_model, prophet_model):
     st.markdown("""
 #### 📘 Interpretation of Metrics
 
-- **MAE (Mean Absolute Error)** measures the average difference between the predicted and actual sales. Lower values indicate better accuracy.
-- **RMSE (Root Mean Squared Error)** penalizes larger errors more than MAE. It gives you a sense of how far predictions deviate from actual values.
-- **R² (R-squared)** tells you how well the model explains the variance in the data. A value closer to 1 means the model fits the data very well.
+- **MAE (Mean Absolute Error)** measures the average difference between predicted and actual values. Lower values indicate better accuracy.
+- **RMSE (Root Mean Squared Error)** penalizes larger errors more heavily, giving insight into the magnitude of large prediction errors.
+- **R² (R-squared)** shows how well the model explains the variance in the data. Closer to 1 means a better fit.
 
-In this case:
+In this project:
 
-- The **XGBoost model** has a much higher R² (≈ 0.98), meaning it captures the patterns in the data extremely well. Which makes it suitable for forecasting weekly sales for each store However, its MAE and RMSE are slightly higher than Prophet's, suggesting it may overfit or be influenced by extreme values.
-  
-- The **Prophet model**, while having a lower R², performs better in terms of MAE and RMSE, indicating it may be more stable and generalizable for forecasting, in this case total weekly sales of all stores.
+- The **XGBoost model** is used for predicting **weekly sales at the individual store level**. It has a very high R² (≈ 0.98), indicating it captures store-level sales patterns exceptionally well. This makes it ideal for granular forecasting where detailed, store-specific decisions are needed.
 
-You can choose between the two based on whether you prioritize variance explanation as with the case with each store(XGBoost) or prediction consistency i.e total weekly sales regardless of the input features (Prophet).
+- The **Prophet model** forecasts the **total weekly sales across all stores combined**. While its R² is lower (~0.63), it still provides meaningful insights into overall sales trends. Its focus on trend and seasonality makes it suitable for big-picture forecasting, such as corporate-level planning.
+
+🧠 **Why the big difference in error values?**  
+The models operate on different scales: XGBoost predicts per-store sales (smaller numbers), while Prophet handles total sales (millions). So Prophet’s error metrics appear larger in raw terms but are appropriate for its forecasting scope.
+
+✅ Use **XGBoost** if you're optimizing performance for individual stores.  
+✅ Use **Prophet** for a broader view of national or overall retail trends.
+
 """)
+
 
 
 
